@@ -21,6 +21,7 @@ function createGrid() {
         const gridBox = document.createElement("div");
         gridBox.classList.add("gridBox");
 
+        //Not used, but just wanted to test
         let rowNumber = i.toString();
         let columnNumber = j.toString();
         let gridID = rowNumber + columnNumber;
@@ -28,7 +29,6 @@ function createGrid() {
 
         gridBox.style.opacity=0.1;
         
-
         gridBox.addEventListener("mouseover", () => {
             if (gridBox.style.backgroundColor === "") {
                 gridBox.style.backgroundColor = randomRGB();
@@ -38,7 +38,6 @@ function createGrid() {
         gridBox.addEventListener("mouseover", () => {
             const gridBoxStyle = getComputedStyle(gridBox);
             let gridBoxOpacity = parseFloat(gridBoxStyle.opacity);
-            console.log(typeof gridBoxOpacity);
 
             let newGridBoxOpacity = 0;
 
@@ -49,10 +48,7 @@ function createGrid() {
                 newGridBoxOpacity = gridBoxOpacity;
             }
 
-            console.log(newGridBoxOpacity);
-
             gridBox.style.opacity = newGridBoxOpacity.toString();
-            console.log(gridBoxOpacity);
         });
 
         gridRow.appendChild(gridBox);
@@ -68,8 +64,3 @@ function randomRGB() {
     const randomRGB = `rgb(${red}, ${green}, ${blue})`;
     return randomRGB;
 }
-// let totalBoxes = (dimension * dimension);
-
-// for (i = 0; i < totalBoxes, i++) {
-//     const 
-// }
