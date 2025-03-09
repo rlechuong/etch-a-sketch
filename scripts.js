@@ -1,30 +1,30 @@
 let gridButton = document.querySelector("#gridButton");
 let gridContainer = document.querySelector("#gridContainer");
 
-let size = 16;
+let gridSize = 16;
 
 createGrid();
 
 gridButton.addEventListener("click", () => {
-    let newSize = prompt("Please enter size:", "16");
+    let newGridSize = prompt("Number of squares per side:", "16");
 
-    if (newSize === null) {
+    if (newGridSize === null) {
         return;
     }
 
-    if (newSize > 100) {
+    if (newGridSize > 100) {
         alert("Maximum Value: 100");
         return;
     }
 
-    size = parseInt(newSize);
+    gridSize = parseInt(newGridSize);
 
     gridContainer.textContent = "";
     createGrid();
 })
 
 function createGrid() {
-    for (i = 0; i <= size - 1; i++) {
+    for (i = 0; i <= gridSize - 1; i++) {
         let gridRow = document.createElement("div");
         gridRow.classList.add("gridRow");
         gridRow.style.width="100%";
@@ -32,25 +32,22 @@ function createGrid() {
         gridRow.style.display="flex";
         gridRow.style.flexDirection="row";
     
-        for (j = 0; j <= size - 1; j++) {
-            let gridID = i.toString() + j.toString();
+        for (j = 0; j <= gridSize - 1; j++) {
             let gridBox = document.createElement("div");
+            let gridID = i.toString() + j.toString();
             gridBox.id = gridID;
             gridBox.classList.add("gridBox");
             gridBox.style.width="100%";
             gridBox.style.height="100%";
     
             gridBox.addEventListener("mouseover", () => {
-
                 if (gridBox.style.backgroundColor ===  "") {
 
                     let red = (Math.floor(Math.random() * 256)).toString();
                     let green = (Math.floor(Math.random() * 256)).toString();
                     let blue = (Math.floor(Math.random() * 256)).toString();
 
-                    let rgb = `rgb(${red}, ${green}, ${blue})`
-
-                    console.log(rgb);
+                    let rgb = `rgb(${red}, ${green}, ${blue})`;
 
                     gridBox.style.backgroundColor = rgb;
                 }
@@ -61,12 +58,10 @@ function createGrid() {
                 else if (parseFloat(gridBox.style.opacity) < 1.0) {
                     newOpacity = parseFloat(gridBox.style.opacity) + 0.1;
                     gridBox.style.opacity = newOpacity.toString();
-                    console.log(gridBox.style.opacity);
                 }
             })
             gridRow.appendChild(gridBox);
         }
-    
         gridContainer.appendChild(gridRow);
     }
 }
